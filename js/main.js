@@ -11,7 +11,7 @@ define([
         var browser = args.browser;
 
         // do anything you need to initialize your plugin here
-        this.config.version = '1.0.0';
+        this.config.version = '2.0.0';
         console.log("MotifDensityPlugin plugin starting - v", this.config.version);
 
         // register track type
