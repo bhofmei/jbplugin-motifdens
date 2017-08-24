@@ -1,0 +1,105 @@
+{
+    "formatVersion" : 1,
+    "names" : {
+        "type" : "Hash",
+        "url" : "names/"
+    },
+    "tracks" : [
+        {
+            "key" : "Reference sequence",
+            "seqType" : "dna",
+            "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-",
+            "category" : "Test data",
+            "chunkSize" : 20000,
+            "storeClass" : "JBrowse/Store/Sequence/StaticChunked",
+            "type" : "SequenceTrack",
+            "label" : "DNA"
+        },
+        {
+            "key" : "Genes",
+            "compress" : 0,
+            "category" : "Test data",
+            "urlTemplate" : "tracks/genes/{refseq}/trackData.json",
+            "type" : "JBrowse/View/Track/CanvasFeatures",
+            "storeClass" : "JBrowse/Store/SeqFeature/NCList",
+            "style" : {
+                "className" : "feature",
+                "color" : "#daa520"
+            },
+            "label" : "genes"
+        },
+        {
+            "label" : "tes",
+            "key" : "Transposable Elements",
+            "compress" : 0,
+            "category" : "Test data",
+            "urlTemplate" : "tracks/tes/{refseq}/trackData.json",
+            "storeClass" : "JBrowse/Store/SeqFeature/NCList",
+            "style" : {
+                "className" : "feature",
+                "color" : "#77158D"
+            },
+            "type" : "JBrowse/View/Track/CanvasFeatures"
+        },
+        {
+            "key" : "Random colors",
+            "label" : "nuc_dens1",
+            "category" : "Test data",
+            "storeClass" : "JBrowse/Store/SeqFeature/SequenceChunks",
+            "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-",
+            "type": "NucleotideDensityPlugin/View/Track/NucleotideDensity",
+            "context" : ["CG", "CHG", "CHH", "C"],
+            "colors" : "random"
+        },
+        {
+            "key" : "Single color",
+            "label" : "nuc_dens2",
+            "category" : "Test data",
+            "storeClass" : "JBrowse/Store/SeqFeature/SequenceChunks",
+            "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-",
+            "type": "NucleotideDensityPlugin/View/Track/NucleotideDensity",
+            "context" : ["CG", "CHG", "CHH", "C"],
+            "colors" : "hotpink"
+        },
+        {
+            "key" : "Array colors",
+            "label" : "nuc_dens3",
+            "category" : "Test data",
+            "storeClass" : "JBrowse/Store/SeqFeature/SequenceChunks",
+            "type": "NucleotideDensityPlugin/View/Track/NucleotideDensity",
+            "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-",
+            "context" : ["CG", "CHG", "CHH", "C"],
+            "colors" : ["red", "orange", "yellow", "greenyellow"]
+        },
+        {
+            "key" : "Object colors",
+            "label" : "nuc_dens4",
+            "category" : "Test data",
+            "storeClass" : "JBrowse/Store/SeqFeature/SequenceChunks",
+            "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-",
+            "type": "NucleotideDensityPlugin/View/Track/NucleotideDensity",
+            "context" : ["CG", "CHG", "CHH", "C"],
+            "colors" : {
+                "CG" : "#A36085",
+                "CHG": "#0072B2",
+                "CHH" : "#CF8F00",
+                "C" : "#00c29b"
+            }
+        },
+      {
+            "key" : "Object colors - svg",
+            "label" : "nuc_dens5",
+            "category" : "Test data",
+            "storeClass" : "JBrowse/Store/SeqFeature/SequenceChunks",
+            "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-",
+            "type": "NucleotideDensityPlugin/View/Track/NucleotideSVGDensity",
+            "context" : ["CG", "CHG", "CHH", "C"],
+            "colors" : {
+                "CG" : "#A36085",
+                "CHG": "#0072B2",
+                "CHH" : "#CF8F00",
+                "C" : "#00c29b"
+            }
+        }
+    ]
+}
