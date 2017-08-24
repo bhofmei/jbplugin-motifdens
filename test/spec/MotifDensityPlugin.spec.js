@@ -5,7 +5,7 @@ require([
     'JBrowse/Store/SeqFeature/SequenceChunks',
     'MotifDensityPlugin/View/ColorHandler',
     'MotifDensityPlugin/View/Track/MotifDensity',
-    'MotifDensityPlugin/Store/SeqFeature/SingleDensityStore',
+    'MotifDensityPlugin/Store/SeqFeature/SingleMotifDensity',
     'MotifDensityPlugin/Store/SeqFeature/MotifDensityStore',
     'MotifDensityPlugin/Store/Util'
     ], function(
@@ -129,7 +129,7 @@ require([
         browser: browser,
         windowSize: 2000,
         windowDelta: 2000,
-        nuc: 'TA',
+        motif: 'TA',
         label: 'single.nucleotide.density.track'
       });
       var features = [];
@@ -171,7 +171,7 @@ require([
         browser: browser,
         windowSize: 2000,
         windowDelta: 2000,
-        contexts: ['Y','KH','NNN'],
+        motifs: ['Y','KH','NNN'],
         label: 'multi.nucleotide.density.track'
       });
       var features = [];
