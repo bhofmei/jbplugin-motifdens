@@ -21,7 +21,7 @@ var profile = {
     selectorEngine: 'acme',
 
     layers: {
-        'MDensPlugin/main': {
+        'MotifDensityPlugin/main': {
             include: [
                 'MotifDensityPlugin',
             ],
