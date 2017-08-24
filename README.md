@@ -1,6 +1,6 @@
 # Sequence Motif Density Plugin
 
-[![Build Status](https://travis-ci.org/bhofmei/jbplugin-nucdens.svg?branch=master)](https://travis-ci.org/bhofmei/jbplugin-nucdens)
+[![Build Status](https://travis-ci.org/bhofmei/jbplugin-motifdens.svg?branch=master)](https://travis-ci.org/bhofmei/jbplugin-motifdens)
 
 Allows the user to create multi-lined heatmaps for different sequence motifs. User can set the color for each motif, a single color for all contexts, or "random" colors will be chosen (see [below](#color-parameters)).
 
