@@ -1,0 +1,132 @@
+/*@import url("../../../src/dojox/widget/ColorPicker/ColorPicker.css");*/
+/* plus and minus icons */
+
+.motifDensAddIcon, .motifDensRemoveIcon{
+    background-image: url('../img/plus_minus.png');
+    width: 14px;
+    height: 14px;
+}
+.motifDensRemoveIcon{
+    background-position: 0;
+}
+.motifDensAddIcon{
+    background-position: -28px;
+}
+
+div.motif-dens-sublabel {
+    z-index: 10;
+    overflow: hidden;
+    cursor: default;
+    padding: 0px 1px 0px 1px;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    border-top: 1px solid #999;
+    /*color: #111;*/
+    font-weight: bold;
+}
+div.motif-dens-sublabel.last {
+    border-bottom: 1px solid #999;
+}
+
+/* dialog parameter table options */
+div#motif-dens-parameters{
+    border-bottom: 1px solid lightgray;
+}
+.motif-dens-dialog-tbl{
+    margin: 0px 5px;
+}
+table#motif-dens-tbl-param{
+    margin-bottom: 5px;
+}
+div#motif-dens-parameters .dijitTextBox{
+    margin: 2px 0px;
+}
+
+div#motif-dens-parameters .dijitTextBox div.dijitInputContainer .dijitInputInner{
+    margin-left: 0.1em !important;
+}
+.motif-dens-param-lbl{
+    float: right;
+    margin-right: 3px
+}
+.motif-dens-param-wnd-spin-col{
+    padding-right: 5px;
+}
+
+/* dialog context table options */
+#motif-dens-contexts{
+    max-height: 400px;
+    overflow: auto;
+}
+table#motif-dens-tbl{
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+#motif-dens-tbl th{
+    font-weight: bold;
+    padding-right: 5px;
+    padding-left: 3px;
+}
+
+td#motif-dens-tbl-clrtype span{
+    margin: 0px 1px 0px 5px;
+}
+td.motif-dens-tbl-ctx-col div.dijitTextBox,
+td.motif-dens-tbl-clr-col div.dijitTextBox,
+td.motif-dens-tbl-clr-view-col div.dijitTextBox {
+    width: 75px;
+    background: white;
+}
+
+td.motif-dens-tbl-ctx-col{
+    padding: 1px 3px 1px 0px;
+}
+td.motif-dens-tbl-clr-view-col{
+    border-left: 1px solid black;
+    padding-left: 3px;
+}
+
+td.motif-dens-tbl-ctx-col div.dijitTextBox input.motif-dens-tbl-txt{
+    padding-bottom: 1px;
+    width: 50px;
+}
+td.motif-dens-tbl-clr-col div.dijitTextBox input.motif-dens-tbl-txt,
+td.motif-dens-tbl-clr-view-col div.dijitTextBox input.motif-dens-tbl-txt
+{
+    width: 75px;
+}
+
+.motif-dens-tbl-txt{
+    border: none;
+}
+
+.motif-dens-tbl-clr-view{
+    height: 16px;
+    width: 75px;
+}
+
+.motif-dens-tbl-btn span.dijitButtonText{
+    padding: 0px;
+}
+.motif-dens-tbl-del-col span.dijitButtonNode,
+.motif-dens-tbl-add-col span.dijitButtonNode{
+    padding: 0px 1px;
+}
+.motif-dens-tbl-del-col span.dijitButton{
+    margin: 0.1em;
+}
+
+/* other dialog settings */
+.motif-dens-dialog div.infoDialogActionBar{
+    padding-top: 0.5em;
+}
+
+
+/* wiggle display */
+div.motif-dens-wiggle-display{
+    font-size: smaller;
+}
+div.track_motifdensityplugin_view_track_motifdensity div.wiggleValueDisplay{
+    background: #e6e6e6;
+    padding: 1px;
+}
