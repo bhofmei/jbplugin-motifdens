@@ -272,7 +272,7 @@ function(
             });
             txt.placeAt(data1);
             txt.onChange = lang.hitch(thisB, '_updateContext', txt);
-            thisB.contextInputs.push(txt);
+            thisB.motifInputs.push(txt);
 
             // color preview
             var clrHex = thisB._getColor((motif===''? cnt: motif));
