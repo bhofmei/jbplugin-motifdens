@@ -58,10 +58,10 @@ define([
           return '#010101';
       },
 
-      contextToColorFromList: function (seqCtx, contextList, colorList, repeatable) {
+      motifToColorFromList: function (seqCtx, motifList, colorList, repeatable) {
         var k = 0;
-        for (k = 0; k < contextList.length; k++)
-          if (contextList[k] === seqCtx)
+        for (k = 0; k < motifList.length; k++)
+          if (motifList[k] === seqCtx)
             break;
         return ColorHandler.intToColorFromList(k, colorList, repeatable);
       },
@@ -82,7 +82,7 @@ define([
           return colorConfig;
         // array
         else if (Array.isArray(colorConfig)) {
-          return ColorHandler.contextToColorFromList(seqCtx, contextConfig, colorConfig, true);
+          return ColorHandler.motifToColorFromList(seqCtx, contextConfig, colorConfig, true);
         }
         // object
         else if (colorConfig.hasOwnProperty(seqCtx))

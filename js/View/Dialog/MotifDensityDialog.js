@@ -57,7 +57,7 @@ function(
                 if(thisB.colorType === 'individual' && thisB.colors.hasOwnProperty(m))
                     return thisB.colors[m];
                 else
-                    return ColorHandler.contextToColorFromList(m, thisB.motifs, thisB.colors, false);
+                    return ColorHandler.motifToColorFromList(m, thisB.motifs, thisB.colors, false);
             });
 
             this.setCallback     = args.setCallback || function() {};
@@ -271,7 +271,7 @@ function(
                 invalidMessage: 'Not valid nucleotide sequence'
             });
             txt.placeAt(data1);
-            txt.onChange = lang.hitch(thisB, '_updateContext', txt);
+            txt.onChange = lang.hitch(thisB, '_updateMotif', txt);
             thisB.motifInputs.push(txt);
 
             // color preview
@@ -316,7 +316,7 @@ function(
             if(this.colorType === 'single' )
                 return this.singleColor;
             else if(typeof motif === 'string')
-                return ColorHandler.contextToColorFromList(motif, this.contexts, (this.colorType==='random' ? this.randomColors : this.indivColors), false);
+                return ColorHandler.motifToColorFromList(motif, this.motifs, (this.colorType==='random' ? this.randomColors : this.indivColors), false);
             else
                 return ColorHandler.intToColorFromList(motif, (this.colorType==='random' ? this.randomColors : this.indivColors), false);
         },
@@ -405,7 +405,7 @@ function(
             }
         },
 
-        _updateContext: function( input ){
+        _updateMotif: function( input ){
             var idx = input._index;
             this.motifs[idx] = input.value;
         },
@@ -415,7 +415,7 @@ function(
             // update indexes of all rows after idx
             for(var i=idx+1; i<this.motifs.length; i++){
                 this.deleteButtons[i]['_index'] --;
-                this.contextInputs[i]['_index'] --;
+                this.motifInputs[i]['_index'] --;
                 this.colorPreviews[i]['_index']--;
                 this.colorInputs[i]['_index']--;
             }
