@@ -92,12 +92,12 @@ require([
             var clr2 = ColorHandler.intToColorFromList(1, colorList, true);
             expect(clr2).toBe('red');
 
-            var clr2 = ColorHandler.contextToColorFromList('CN', ['TA','WCN','CN','NY'],['blue','red','pink','purple'], true);
+            var clr2 = ColorHandler.motifToColorFromList('CN', ['TA','WCN','CN','NY'],['blue','red','pink','purple'], true);
             expect(clr2).toBe('pink');
         });
 
         it('get color from list not defined', function(){
-            var un = ColorHandler.contextToColorFromList('NN',['NH','GT','AC'],['blue','red','pink'], false);
+            var un = ColorHandler.motifToColorFromList('NN',['NH','GT','AC'],['blue','red','pink'], false);
             expect(un).not.toBeDefined()
         });
 
@@ -105,9 +105,9 @@ require([
             var colorList = ['blue','red','pink'];
             var ctxList = ['AA','AC','AT','CC','CG','CT','GA','GC','TT'];
 
-            var clr1 = ColorHandler.contextToColorFromList('CC',ctxList, colorList, true);
+            var clr1 = ColorHandler.motifToColorFromList('CC',ctxList, colorList, true);
             expect(clr1).toBe('blue');
-            var clr2 = ColorHandler.contextToColorFromList('TT',ctxList, colorList, true);
+            var clr2 = ColorHandler.motifToColorFromList('TT',ctxList, colorList, true);
             expect(clr2).toBe('pink');
         });
     }); // end test color handler
