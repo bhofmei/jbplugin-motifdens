@@ -32,6 +32,9 @@ define([
           label: 'MotifDensity',
           type: 'MotifDensityPlugin/View/Track/MotifDensity'
         });
+
+        if(this.config.dialog){
+          var button;
         browser.afterMilestone('initView', function () {
           // create screenshot button (possibly tools menu)
           var menuBar = browser.menuBar;
@@ -47,26 +50,21 @@ define([
               colors: thisB.config.dialogColors
             }).show();
           }
-
-          if (thisB.config.dialog) {
-            var button = new dijitButton({
+            button = new dijitButton({
               innerHTML: 'M',
               id: 'motif-button',
               onClick: showMotifDialog
             });
             menuBar.appendChild(button.domNode);
-          }
         });
         browser.afterMilestone('completely initialized', function () {
-          if (thisB.config.dialog) {
             if (browser.view.tracks.length < 1) {
               setTimeout(function () {
-                var button = dijitRegistry.byId('motif-button');
                 button.onClick();
               }, 700)
             }
-          }
-        })
+        });
+        } // end if config.dialog
       }
     });
   });
