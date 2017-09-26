@@ -2,12 +2,14 @@ define([
   'dojo/_base/declare',
   'JBrowse/Plugin',
   'dijit/form/Button',
+  'dijit/registry',
   'MotifDensityPlugin/View/Dialog/MotifDensityDialog'
   ],
     function (
       declare,
       JBrowsePlugin,
       dijitButton,
+       dijitRegistry,
       MotifDensDialog
     ) {
       return declare(JBrowsePlugin, {
@@ -49,6 +51,7 @@ define([
                 button = new dijitButton({
                   innerHTML: 'M',
                   title: 'take screen shot of browser',
+                  id: 'motif-button',
                   onClick: showDialog
                 });
                 browser.menuBar.appendChild(button.domNode);
@@ -57,8 +60,9 @@ define([
               browser.afterMilestone('completely initialized', function () {
                 if (browser.view.tracks.length < 1) {
                   setTimeout(function () {
-                    button.onClick();
-                  }, 700)
+                    button = dijitRegistry.byId('motif-button');
+            button.onClick();
+                  }, 1000)
                 }
               }); // end completely initialized
             } // end if dialog
