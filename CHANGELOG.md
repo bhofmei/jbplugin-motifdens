@@ -1,7 +1,13 @@
 # Change log
 Note: Version numbering will begin with v2 to avoid confusion with version numbering from Nucleotide Density plugin
 
-### [Unreasleased]
+### [Unresleased]
+
+### [v2.1.0] - 2017-09-26
+- bug fixes
+- ADDED dialog mode to be able to take screenshots of the dialog box
+  - optional dialogColors parameter to set colors used in dialog
+  - optional dialogMotifs parameter to set motifs used in dialog
 
 ### [v2.0.0] - 2017-08-24
 - Renamed/import from previous Nucleotide Density plugin
