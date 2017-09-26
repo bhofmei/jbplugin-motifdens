@@ -207,7 +207,7 @@ function(
                     });
                 btn.onClick = lang.hitch(thisB, '_setColorType', btn);
                 domConstr.create('span',{innerHTML:t}, data2);
-                data2.append(btn.domNode);
+                data2.appendChild(btn.domNode);
             });
 
             // text box for single color
