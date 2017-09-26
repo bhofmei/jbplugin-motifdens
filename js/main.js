@@ -32,7 +32,7 @@ define([
         // dialog mode
         browser.afterMilestone('completely initialized', function () {
           if (thisB.config.dialog) {
-            if (browser.view.tracks.length < 1) {
+            //if (browser.view.tracks.length < 1) {
               setTimeout(function () {
                 //var button = dijitRegistry.byId('screenshot-button');
                 //button.onClick();
@@ -47,7 +47,7 @@ define([
                   colors: thisB.config.dialogColors
                 }).show();
               }, 700);
-            }
+            //}
           }
         })
       }
