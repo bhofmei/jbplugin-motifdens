@@ -24,7 +24,7 @@ define([
     Util,
     MotifStore,
     ColorHandler,
-    NucDensDialog
+    MotifDensDialog
   ) {
     return declare(WiggleDensity, {
       constructor: function () {
@@ -250,7 +250,7 @@ define([
           label: 'Track options',
           iconClass: 'dijitIconFunction',
           onClick: function () {
-            new NucDensDialog({
+            new MotifDensDialog({
               setCallback: function (ws, wd, minsc, maxsc, m, clr) {
                 track.config.windowSize = ws;
                 track.config.windowDelta = wd;
