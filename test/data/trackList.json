@@ -47,8 +47,8 @@
             "category" : "Test data",
             "storeClass" : "JBrowse/Store/SeqFeature/SequenceChunks",
             "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-",
-            "type": "NucleotideDensityPlugin/View/Track/NucleotideDensity",
-            "context" : ["CG", "CHG", "CHH", "C"],
+            "type": "MotifDensityPlugin/View/Track/MotifDensity",
+            "motifs" : ["CG", "CHG", "CHH", "C"],
             "colors" : "random"
         },
         {
@@ -57,8 +57,8 @@
             "category" : "Test data",
             "storeClass" : "JBrowse/Store/SeqFeature/SequenceChunks",
             "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-",
-            "type": "NucleotideDensityPlugin/View/Track/NucleotideDensity",
-            "context" : ["CG", "CHG", "CHH", "C"],
+            "type": "MotifDensityPlugin/View/Track/MotifDensity",
+            "motifs" : ["CG", "CHG", "CHH", "C"],
             "colors" : "hotpink"
         },
         {
@@ -66,9 +66,9 @@
             "label" : "nuc_dens3",
             "category" : "Test data",
             "storeClass" : "JBrowse/Store/SeqFeature/SequenceChunks",
-            "type": "NucleotideDensityPlugin/View/Track/NucleotideDensity",
+            "type": "MotifDensityPlugin/View/Track/MotifDensity",
             "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-",
-            "context" : ["CG", "CHG", "CHH", "C"],
+            "motifs" : ["CG", "CHG", "CHH", "C"],
             "colors" : ["red", "orange", "yellow", "greenyellow"]
         },
         {
@@ -77,8 +77,8 @@
             "category" : "Test data",
             "storeClass" : "JBrowse/Store/SeqFeature/SequenceChunks",
             "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-",
-            "type": "NucleotideDensityPlugin/View/Track/NucleotideDensity",
-            "context" : ["CG", "CHG", "CHH", "C"],
+            "type": "MotifDensityPlugin/View/Track/MotifDensity",
+            "motifs" : ["CG", "CHG", "CHH", "C"],
             "colors" : {
                 "CG" : "#A36085",
                 "CHG": "#0072B2",
@@ -92,8 +92,8 @@
             "category" : "Test data",
             "storeClass" : "JBrowse/Store/SeqFeature/SequenceChunks",
             "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-",
-            "type": "NucleotideDensityPlugin/View/Track/NucleotideSVGDensity",
-            "context" : ["CG", "CHG", "CHH", "C"],
+            "type": "MotifDensityPlugin/View/Track/MotifSVGDensity",
+            "motifs" : ["CG", "CHG", "CHH", "C"],
             "colors" : {
                 "CG" : "#A36085",
                 "CHG": "#0072B2",

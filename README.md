@@ -56,7 +56,7 @@ Loading the track may take awhile for large region and/or many motifs.
     "key" : "Nucleotide Density",
     "label" : "nuc_dens",
     "storeClass" : "JBrowse/Store/SeqFeature/SequenceChunks",
-    "type": "NucleotideDensityPlugin/View/Track/NucleotideDensity",
+    "type": "MotifDensityPlugin/View/Track/MotifDensity",
     "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-",
     "motifs" : ["CG", "CHG", "CHH", "C"]
 }
