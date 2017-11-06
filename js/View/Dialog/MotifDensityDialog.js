@@ -11,6 +11,7 @@ define([
     'dijit/focus',
     "dijit/registry",
     'dijit/form/NumberSpinner',
+  'dijit/form/CheckBox',
     'dijit/form/Button',
     'dijit/form/RadioButton',
     'dijit/form/ValidationTextBox',
@@ -31,6 +32,7 @@ function(
     focus,
     registry,
     NumberSpinner,
+     dijitCheckBox,
     Button,
     dijitRadioButton,
     ValidationTextBox,
@@ -45,6 +47,7 @@ function(
             this.windowSize = args.windowSize || 100;
             this.windowDelta = args.windowDelta || 10;
             this.minScore = args.minScore || 0;
+          this.forceWindow = args.forceWindow || false;
             this.maxScore = args.maxScore || 1;
             this.browser = args.browser;
             this.motifs = args.motifs || [];
@@ -72,6 +75,7 @@ function(
                     var windowDelta = +this.windowDeltaSpinner.getValue();
                     var minScore = +this.minDensitySpinner.getValue();
                     var maxScore = +this.maxDensitySpinner.getValue();
+                  var forceWindow = +this.forceWindowCheckBox.get('checked');
                     if (isNaN(windowSize) || isNaN(windowDelta) || isNaN(minScore) || isNaN(maxScore)) {
                         return;
                     }
@@ -85,7 +89,7 @@ function(
                     //console.log(returnCtx);
                     var returnClr = this._getColorCallback();
 
-                    this.setCallback && this.setCallback(windowSize, windowDelta, minScore, maxScore, returnCtx, returnClr);
+                    this.setCallback && this.setCallback(windowSize, windowDelta, forceWindow, minScore, maxScore, returnCtx, returnClr);
                     this.hide();
                 })
             }).placeAt(actionBar);
@@ -156,7 +160,7 @@ function(
 
             // row 2 - window delta and max score
             row = domConstr.create('tr', {}, tbl);
-            // window size
+            // window delta
             data0 = domConstr.create('td',{}, row);
             domConstr.create('span',{className: 'motif-dens-param-lbl', innerHTML: 'Window delta (bp)'}, data0);
             data1 = domConstr.create('td',{className: 'motif-dens-param-wnd-spin-col'}, row);
@@ -179,6 +183,18 @@ function(
             });
             this.maxDensitySpinner.placeAt(data3);
 
+          // row 3 - force window size
+          row = domConstr.create('tr', {}, tbl);
+          data0 = domConstr.create('td',{colspan:2}, row);
+          domConstr.create('span',{className: 'motif-dens-param-lbl', id: 'motif-dens-param-force', innerHTML: 'Force exact window size'}, data0);
+          //data1 = domConstr.create('td',{className: 'motif-dens-param-check'}, row);
+          this.forceWindowCheckBox = new dijitCheckBox({
+                checked: thisB.forceWindow,
+              style: 'float: right;'
+            });
+
+            this.forceWindowCheckBox.placeAt(data0);
+
         },
 
         _createBottomPane: function(obj){
@@ -191,7 +207,7 @@ function(
             }
             var tbl = domConstr.create('tbody',{},tblo);
             domConstr.create('tr',{innerHTML:'<td rowspan="3"></td><td></td><th class="motif-dens-tbl-header" colspan="2">Color</th><td></td>'}, tbl);
-            var row, data0, data1, data2, data3, dbtn;
+            var row, data1, data2, data3, dbtn;
 
             // row of radio buttons to determine color type
             row = domConstr.create('tr', {}, tbl);
@@ -237,7 +253,7 @@ function(
                 cnt++;
             });
             // add btn row
-            var row = domConstr.create('tr',{className: 'motif-dens-tbl-row'}, tbl);
+            row = domConstr.create('tr',{className: 'motif-dens-tbl-row'}, tbl);
             thisB._createAddBtnRow(row);
         },
 
@@ -363,7 +379,7 @@ function(
             //console.log('update random colors', this.randomColors);
             var thisB = this;
             var cnt = 0;
-            var clr, clrIn;
+            var clr;
             // update color previews and inputs
             array.forEach(this.colorPreviews, function(clrPre){
                 clr = thisB.randomColors[cnt];

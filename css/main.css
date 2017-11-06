@@ -49,6 +49,9 @@ div#motif-dens-parameters .dijitTextBox div.dijitInputContainer .dijitInputInner
     float: right;
     margin-right: 3px
 }
+#motif-dens-param-force{
+  float: left;
+}
 .motif-dens-param-wnd-spin-col{
     padding-right: 5px;
 }
