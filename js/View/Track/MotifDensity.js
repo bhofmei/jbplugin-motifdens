@@ -47,10 +47,12 @@ define([
 
       _defaultConfig: function () {
         return Util.deepUpdate(lang.clone(this.inherited(arguments)), {
+          maxFeatureScreen: 2500,
+          forceExactWindowSize: false,
           min_score: 0,
           max_score: 1,
           windowSize: 100,
-          windowDelta: 10,
+          windowDelta: 50,
           logScaleOption: false,
           showLabels: true,
           showScores: true,
@@ -148,11 +150,50 @@ define([
         }
       },
 
+      fillBlock: function(args){
+        var regionWidth = (args.rightBase - args.leftBase);
+        var nFeatures = regionWidth / this.config.windowDelta;
+        args.block.tooManyFeatures = false;
+        //query('#track_' + this.config.label + ' div.block canvas').style('border-bottom', null);
+        if(nFeatures > this.config.maxFeatureScreen && this.config.forceExactWindowSize){
+          // error
+          this.fillMessage(args.blockIndex,args.block, 'Too much data to show; increase window delta.');
+          args.finishCallback();
+        } else if (nFeatures > this.config.maxFeatureScreen){
+          // adjust window size/delta to adjust for zoom
+          var windowPortion = this.config.windowDelta / this.config.windowSize;
+          var windowDelta = Math.floor(regionWidth / this.config.maxFeatureScreen);
+          var windowSize = Math.floor(windowDelta / windowPortion);
+          this.store.updateWindow(windowSize, windowDelta);
+          args.block.tooManyFeatures = true;
+          return this.inherited(arguments);
+        }
+        else {
+          this.store.updateWindow(this.config.windowSize, this.config.windowDelta);
+
+        return this.inherited(arguments);
+        }
+      },
+
+      fillMessage: function(blockIndex, block, message){
+        domConstruct.empty( block.domNode );
+        domConstruct.create(
+            'div', {
+                className: 'message',
+                innerHTML: message
+            }, block.domNode );
+        this.heightUpdate( this.config.style.height, blockIndex );
+      },
+
       _drawFeatures: function (scale, leftBase, rightBase, block, canvas, pixels, dataScale) {
-        //console.log(pixels);
         var thisB = this;
         var context = canvas.getContext('2d');
         var canvasHeight = canvas.height;
+        if(block.tooManyFeatures && !thisB.config.disable_clip_markers){
+          context.fillStyle = 'black';
+          context.fillRect(0, canvasHeight-1, canvas.width, 1);
+          context.fillRect(0, 0, canvas.width, 1);
+        }
         var featureColor = typeof this.config.style.color === 'function' ? this.config.style.color :
           (function () { // default color function uses conf variables
             var disableClipMarkers = thisB.config.disable_clip_markers;
@@ -237,6 +278,7 @@ define([
           }, this);
         }
       },
+
       _trackMenuOptions: function () {
         var track = this;
         var options = this.inherited(arguments);
@@ -251,9 +293,10 @@ define([
           iconClass: 'dijitIconFunction',
           onClick: function () {
             new MotifDensDialog({
-              setCallback: function (ws, wd, minsc, maxsc, m, clr) {
+              setCallback: function (ws, wd, fwnd, minsc, maxsc, m, clr) {
                 track.config.windowSize = ws;
                 track.config.windowDelta = wd;
+                track.config.forceExactWindowSize = fwnd;
                 track.config.motifs = m;
                 track.config.colors = clr;
                 track.config.min_score = minsc;
@@ -262,6 +305,7 @@ define([
               },
               windowSize: track.config.windowSize,
               windowDelta: track.config.windowDelta,
+              forceWindow: track.config.forceExactWindowSize,
               minScore: track.config.min_score,
               maxScore: track.config.max_score,
               motifs: track.config.motifs,
@@ -273,7 +317,7 @@ define([
           title: 'use both strands or forward strand only to compute density',
           type: 'dijit/CheckedMenuItem',
           checked: track.config.bothStrands,
-          onClick: function (evt) {
+          onClick: function () {
             track.config.bothStrands = this.checked;
             track.browser.publish('/jbrowse/v1/c/tracks/replace', [track.config]);
           }
@@ -282,7 +326,7 @@ define([
           title: 'show sequence context labels on track',
           type: 'dijit/CheckedMenuItem',
           checked: track.config.showLabels,
-          onClick: function (evt) {
+          onClick: function () {
             track.config.showLabels = this.checked;
             query('#track_' + track.config.label + ' div.track-sublabels').style('display', this.checked ? 'block' : 'none');
 
@@ -292,7 +336,7 @@ define([
           title: 'show density scores when mouseover track',
           type: 'dijit/CheckedMenuItem',
           checked: track.config.showScores,
-          onClick: function (evt) {
+          onClick: function () {
             track.config.showScores = this.checked;
             track.browser.publish('/jbrowse/v1/c/tracks/replace', [track.config]);
           }
