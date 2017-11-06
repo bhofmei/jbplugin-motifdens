@@ -1,7 +1,16 @@
 # Change log
 Note: Version numbering will begin with v2 to avoid confusion with version numbering from Nucleotide Density plugin
 
-### [Unresleased]
+### [Unreleased]
+
+### [v2.2.0] - 2017-11-06
+- FIXED typos in README and test data trackList.json
+- ADDED automatic window size/delta when viewing very large regions
+  - avoids out of memory errors
+  - can be faster
+  - when window size/delta are changed, black lines appear above/below the track
+- ADDED option to force the window size/delta and not automatically adjust (see above)
+  - when zoomed too far out, gives warning message
 
 ### [v2.1.0] - 2017-09-26
 - bug fixes

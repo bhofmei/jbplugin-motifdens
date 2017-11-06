@@ -46,7 +46,7 @@ Sample data is included in the plugin to test that the plugin is working properl
 
 **Note**: sometimes the density doesn't fully load the first time. Deselect track and readd.
 
-## Using Nucleotide Density Tracks
+## Using Motif Density Tracks
 
 Loading the track may take awhile for large region and/or many motifs.
 
@@ -95,6 +95,16 @@ Colors can be specified using a javascript object assigning a color to each cont
     "colors" : { "CG" : "#A36085", "CHG": "#0072B2", "CHH" : "#CF8F00", "C" : "#00c29b" }
 ```
 
+### Window Size/Window Delta
+Density is computed using a sliding window technique to proudce. Density values must be computed when viewing a region for the first time.
+With large regions and small window delta(step size), the number of density "features" computed becomes very high and can cause memory issues in the browser.
+
+To avoid this, when zooomed out/viewing a large region, the window size/delta will automatically be adjusted to reduce the number of density "features". When this happens, black lines appear at the top and bottom of the track (unless clip markers are disabled).
+
+This option can be turned off with the `forceExactWindowSize` parameter. When zoomed out too far, the track gives a warning message.
+
+The `maxFeatureScreen` parameter determine what is considered too far zoomed out. This value is the maximum number of density features allowed in each block before changing the window size/delta or displaying the warning message.
+
 ### Dialog Menu
 Many of the parameters and settings can be adjusted using a dialog box in the track menu. Motifs can be added and removed. Colors can be changed to any of the possible color parameter types. The minimum and maximum density can be set to improve visualization. And the window size and window delta can be adjusted.
 
@@ -108,6 +118,8 @@ Additional parameters that can be specified for the track configuration.
 * `"max_score" : 1`  , maximum density when computing color
 * `"windowSize" : 100`  , window size for sliding window when computing density
 * `"windowDelta" : 10`  , window step size for sliding window
+* `"maxFeatureScreen" : 25000` , maximum number of features allowed in block without adjusting window size/delta
+* `"forceExactWindowSize" : false`  , when true, do not adjust window size/delta when too many features in block
 * `"showLabels" : true`  , show context sublabels on track
 * `"showScores" : true`  , show density value when mouse is over the track
 * `"bothStrands" : false`  , use sequence on forward strand only or both strands to compute density
@@ -115,7 +127,6 @@ Additional parameters that can be specified for the track configuration.
 
 
 ## Future Plans
-- Adjust window size/window delta when zoomed out really far to avoid out of memory errors and excessively long loading times
 - "Loading" screen when recomputing after changing a track setting
 - Ability to add track locally by adding option to menu bar, "File"
 - Possibly improved score view (currently works fine but is not visually appealing)
