@@ -47,8 +47,8 @@ define([
           lang.hitch(this, '_failAllDeferred'));
       },
 
-      updateWindow: function(windowSize, windowDelta){
-        array.forEach(this.stores, function(store){
+      updateWindow: function (windowSize, windowDelta) {
+        array.forEach(this.stores, function (store) {
           store.windowSize = windowSize;
           store.windowDelta = windowDelta;
         });

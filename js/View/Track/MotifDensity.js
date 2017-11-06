@@ -150,16 +150,16 @@ define([
         }
       },
 
-      fillBlock: function(args){
+      fillBlock: function (args) {
         var regionWidth = (args.rightBase - args.leftBase);
         var nFeatures = regionWidth / this.config.windowDelta;
         args.block.tooManyFeatures = false;
         //query('#track_' + this.config.label + ' div.block canvas').style('border-bottom', null);
-        if(nFeatures > this.config.maxFeatureScreen && this.config.forceExactWindowSize){
+        if (nFeatures > this.config.maxFeatureScreen && this.config.forceExactWindowSize) {
           // error
-          this.fillMessage(args.blockIndex,args.block, 'Too much data to show; increase window delta.');
+          this.fillMessage(args.blockIndex, args.block, 'Too much data to show; increase window delta.');
           args.finishCallback();
-        } else if (nFeatures > this.config.maxFeatureScreen){
+        } else if (nFeatures > this.config.maxFeatureScreen) {
           // adjust window size/delta to adjust for zoom
           var windowPortion = this.config.windowDelta / this.config.windowSize;
           var windowDelta = Math.floor(regionWidth / this.config.maxFeatureScreen);
@@ -167,31 +167,30 @@ define([
           this.store.updateWindow(windowSize, windowDelta);
           args.block.tooManyFeatures = true;
           return this.inherited(arguments);
-        }
-        else {
+        } else {
           this.store.updateWindow(this.config.windowSize, this.config.windowDelta);
 
-        return this.inherited(arguments);
+          return this.inherited(arguments);
         }
       },
 
-      fillMessage: function(blockIndex, block, message){
-        domConstruct.empty( block.domNode );
+      fillMessage: function (blockIndex, block, message) {
+        domConstruct.empty(block.domNode);
         domConstruct.create(
-            'div', {
-                className: 'message',
-                innerHTML: message
-            }, block.domNode );
-        this.heightUpdate( this.config.style.height, blockIndex );
+          'div', {
+            className: 'message',
+            innerHTML: message
+          }, block.domNode);
+        this.heightUpdate(this.config.style.height, blockIndex);
       },
 
       _drawFeatures: function (scale, leftBase, rightBase, block, canvas, pixels, dataScale) {
         var thisB = this;
         var context = canvas.getContext('2d');
         var canvasHeight = canvas.height;
-        if(block.tooManyFeatures && !thisB.config.disable_clip_markers){
+        if (block.tooManyFeatures && !thisB.config.disable_clip_markers) {
           context.fillStyle = 'black';
-          context.fillRect(0, canvasHeight-1, canvas.width, 1);
+          context.fillRect(0, canvasHeight - 1, canvas.width, 1);
           context.fillRect(0, 0, canvas.width, 1);
         }
         var featureColor = typeof this.config.style.color === 'function' ? this.config.style.color :

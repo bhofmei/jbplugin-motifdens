@@ -69,10 +69,12 @@ define([
       }
 
     },
+
     _drawFeatures: function (scale, leftBase, rightBase, block, canvas, pixels, dataScale) {
       var thisB = this;
       var dim = canvas.getDimensions();
       var canvasHeight = dim.height;
+
       var featureColor = typeof this.config.style.color === 'function' ? this.config.style.color :
         (function () { // default color function uses conf variables
           var disableClipMarkers = thisB.config.disable_clip_markers;
@@ -102,7 +104,6 @@ define([
         fullRects[i] = [];
       }
       var rect;
-      //block.clipRects = [];
 
       array.forEach(pixels, function (p, i) {
         if (p) {
@@ -138,47 +139,57 @@ define([
           width: rect.w,
           height: kheight
         }).setFill(rect.fill)
-      })
-    },
-    mouseover: function (bpX, evt) {
-          // if( this._scoreDisplayHideTimeout )
-          //     window.clearTimeout( this._scoreDisplayHideTimeout );
-          if (bpX === undefined) {
-            var thisB = this;
-            //this._scoreDisplayHideTimeout = window.setTimeout( function() {
-            thisB.scoreDisplay.flag.style.display = 'none';
-            thisB.scoreDisplay.pole.style.display = 'none';
-            //}, 1000 );
-          } else {
-            var block;
-            array.some(this.blocks, function (b) {
-              if (b && b.startBase <= bpX && b.endBase >= bpX) {
-                block = b;
-                return true;
-              }
-              return false;
-            });
+      });
 
-            if (!(block && block.canvas && block.pixelScores && evt))
-              return;
-
-            var pixelValues = block.pixelScores;
-            var canvas = block.canvas.rawNode;
-            var cPos = dojo.position(canvas);
-            var x = evt.pageX;
-            var cx = evt.pageX - cPos.x;
-
-            if (this._showPixelValue(this.scoreDisplay.flag, pixelValues[Math.round(cx)])) {
-              this.scoreDisplay.flag.style.display = 'block';
-              this.scoreDisplay.pole.style.display = 'block';
-
-              this.scoreDisplay.flag.style.left = evt.clientX + 'px';
-              this.scoreDisplay.flag.style.top = cPos.y + 'px';
-              this.scoreDisplay.pole.style.left = evt.clientX + 'px';
-              this.scoreDisplay.pole.style.height = cPos.h + 'px';
-            }
-          }
+      if(block.tooManyFeatures && !thisB.config.disable_clip_markers){
+          canvas.createRect({
+            x: 0, y: 0, width: dim.width, height: 1
+          }).setFill('black');
+        canvas.createRect({
+            x: 0, y: canvasHeight-1, width: dim.width, height: 1
+          }).setFill('black');
         }
+    },
+
+    mouseover: function (bpX, evt) {
+      // if( this._scoreDisplayHideTimeout )
+      //     window.clearTimeout( this._scoreDisplayHideTimeout );
+      if (bpX === undefined) {
+        var thisB = this;
+        //this._scoreDisplayHideTimeout = window.setTimeout( function() {
+        thisB.scoreDisplay.flag.style.display = 'none';
+        thisB.scoreDisplay.pole.style.display = 'none';
+        //}, 1000 );
+      } else {
+        var block;
+        array.some(this.blocks, function (b) {
+          if (b && b.startBase <= bpX && b.endBase >= bpX) {
+            block = b;
+            return true;
+          }
+          return false;
+        });
+
+        if (!(block && block.canvas && block.pixelScores && evt))
+          return;
+
+        var pixelValues = block.pixelScores;
+        var canvas = block.canvas.rawNode;
+        var cPos = dojo.position(canvas);
+        var x = evt.pageX;
+        var cx = evt.pageX - cPos.x;
+
+        if (this._showPixelValue(this.scoreDisplay.flag, pixelValues[Math.round(cx)])) {
+          this.scoreDisplay.flag.style.display = 'block';
+          this.scoreDisplay.pole.style.display = 'block';
+
+          this.scoreDisplay.flag.style.left = evt.clientX + 'px';
+          this.scoreDisplay.flag.style.top = cPos.y + 'px';
+          this.scoreDisplay.pole.style.left = evt.clientX + 'px';
+          this.scoreDisplay.pole.style.height = cPos.h + 'px';
+        }
+      }
+    }
   });
   return MotifSVGDensity;
 });
