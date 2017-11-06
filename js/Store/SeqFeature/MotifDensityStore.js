@@ -47,6 +47,13 @@ define([
           lang.hitch(this, '_failAllDeferred'));
       },
 
+      updateWindow: function(windowSize, windowDelta){
+        array.forEach(this.stores, function(store){
+          store.windowSize = windowSize;
+          store.windowDelta = windowDelta;
+        });
+      },
+
       _getFeatures: function (query, featureCallback, endCallback, errorCallback) {
         var thisB = this;
         var finished = 0;

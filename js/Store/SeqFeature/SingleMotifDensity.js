@@ -1,6 +1,7 @@
 define([
     'dojo/_base/declare',
     'dojo/_base/array',
+  'dojo/_base/lang',
     'JBrowse/Store/SeqFeature',
     'JBrowse/Store/DeferredFeaturesMixin',
     'JBrowse/Util',
@@ -10,6 +11,7 @@ define([
 function(
     declare,
     array,
+     lang,
     SeqFeatureStore,
     DeferredFeaturesMixin,
     Util,
@@ -38,7 +40,7 @@ function(
         },
 
         getGlobalStats: function(callback /* , errorCallback */) {
-            var s = dojo.mixin(this.stats, {mean: this.stats.sum / this.stats.count});
+            var s = lang.mixin(this.stats, {mean: this.stats.sum / this.stats.count});
             callback(s);
         },
 
