@@ -3,6 +3,14 @@ Note: Version numbering will begin with v2 to avoid confusion with version numbe
 
 ### [Unreleased]
 
+### [v2.2.1] - 2018-03-19
+- ADDED max block query size so it doesn't try generating a heatmap for large regions
+  - this is extremely slow even with large window size
+  - Default is 250000 per block or 1.5 MB across total view
+- REMOVED dojo/domReady dependency (caused issues with JBrowse 1.13.0)
+- UPDATED package name to match jbrowse plugin name scheme
+  
+
 ### [v2.2.0] - 2017-11-06
 - FIXED typos in README and test data trackList.json
 - ADDED automatic window size/delta when viewing very large regions
