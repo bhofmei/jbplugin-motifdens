@@ -48,6 +48,7 @@ define([
       _defaultConfig: function () {
         return Util.deepUpdate(lang.clone(this.inherited(arguments)), {
           maxFeatureScreen: 2500,
+          maxBlockQuerySize: 250000,
           forceExactWindowSize: false,
           min_score: 0,
           max_score: 1,
@@ -154,8 +155,12 @@ define([
         var regionWidth = (args.rightBase - args.leftBase);
         var nFeatures = regionWidth / this.config.windowDelta;
         args.block.tooManyFeatures = false;
+        //console.log(regionWidth);
         //query('#track_' + this.config.label + ' div.block canvas').style('border-bottom', null);
-        if (nFeatures > this.config.maxFeatureScreen && this.config.forceExactWindowSize) {
+        if(regionWidth > this.config.maxBlockQuerySize){
+          this.fillMessage(args.blockIndex, args.block, 'Too much data; zoom in.')
+          args.finishCallback();
+        } else if (nFeatures > this.config.maxFeatureScreen && this.config.forceExactWindowSize) {
           // error
           this.fillMessage(args.blockIndex, args.block, 'Too much data to show; increase window delta.');
           args.finishCallback();
