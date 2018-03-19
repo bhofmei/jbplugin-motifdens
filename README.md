@@ -14,7 +14,7 @@ Special thanks to [Colin Diesh](http://cmdcolin.github.io/) who inspired compone
 
 ## Install
 
-For JBrowse 1.11.6+ in the _JBrowse/plugins_ folder, type:  
+For JBrowse 1.11.6 - 1.12.5 in the _JBrowse/plugins_ folder, type:  
 `git clone https://github.com/bhofmei/jbplugin-motifdens.git MotifDensityPlugin`
 
 **or**
@@ -104,6 +104,8 @@ To avoid this, when zooomed out/viewing a large region, the window size/delta wi
 This option can be turned off with the `forceExactWindowSize` parameter. When zoomed out too far, the track gives a warning message.
 
 The `maxFeatureScreen` parameter determine what is considered too far zoomed out. This value is the maximum number of density features allowed in each block before changing the window size/delta or displaying the warning message.
+
+However, independent of the window size and window delta, calculating density over very large regions is computationally slow. By default, it will only produce the heatmap for queries (viewing window) less than about 1.4 MB. The `maxBlockQuerySize` parameter determines this. Note, this parameter is per-block not the entire region and the default value is `"maxBlockQuerySize" : 250000`.
 
 ### Dialog Menu
 Many of the parameters and settings can be adjusted using a dialog box in the track menu. Motifs can be added and removed. Colors can be changed to any of the possible color parameter types. The minimum and maximum density can be set to improve visualization. And the window size and window delta can be adjusted.
