@@ -18,7 +18,7 @@ define([
         var thisB = this;
 
         // do anything you need to initialize your plugin here
-        this.config.version = '2.1.2';
+        this.config.version = '2.2.2';
         console.log("MotifDensityPlugin plugin starting - v" + this.config.version);
 
         this.config.dialog = false;
