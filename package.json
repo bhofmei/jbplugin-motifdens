@@ -1,6 +1,6 @@
 {
   "name": "motifdens-jbrowse-plugin",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Multi-lined heatmap-style track for sequence motif density",
   "main": "main.js",
   "scripts": {

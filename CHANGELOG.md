@@ -3,6 +3,11 @@ Note: Version numbering will begin with v2 to avoid confusion with version numbe
 
 ### [Unreleased]
 
+### [v2.2.2] - 2018-03-30
+- FIXED issue where svg density rects would be deleted if y-scale for another track was rendered after the motif density track
+  - use svg path instead of svg rect to build the density blocks
+- ADDED clip_marker_color option rather than always being black
+
 ### [v2.2.1] - 2018-03-19
 - ADDED max block query size so it doesn't try generating a heatmap for large regions
   - this is extremely slow even with large window size
