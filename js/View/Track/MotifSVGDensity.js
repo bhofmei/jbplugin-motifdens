@@ -133,21 +133,25 @@ define([
       var flattenRects = [].concat.apply([], fullRects);
       // draw
       array.forEach(flattenRects, function (rect) {
-        canvas.createRect({
+        /*canvas.createRect({
           x: rect.x,
           y: rect.y,
           width: rect.w,
           height: kheight
-        }).setFill(rect.fill)
+        }).setFill(rect.fill)*/
+        thisB._createRect(canvas, rect.x, rect.y, rect.w, kheight, rect.fill);
       });
 
       if(block.tooManyFeatures && !thisB.config.disable_clip_markers){
-          canvas.createRect({
+          /*canvas.createRect({
             x: 0, y: 0, width: dim.width, height: 1
           }).setFill('black');
         canvas.createRect({
             x: 0, y: canvasHeight-1, width: dim.width, height: 1
-          }).setFill('black');
+          }).setFill('black');*/
+        var fill = thisB.config.style.clip_marker_color || 'black';
+        thisB._createRect(canvas, 0, 0, dim.width, 1, fill);
+        thisB._createRect(canvas, 0, canvasHeight-1, dim.width, 1, fill);
         }
     },
 
@@ -189,6 +193,10 @@ define([
           this.scoreDisplay.pole.style.height = cPos.h + 'px';
         }
       }
+    },
+    _createRect: function(canvas, x, y, w, h, fill){
+      var path = 'M ' + x + ','+y + ' h '+ w + ' v ' + h + ' h -' + w + ' z';
+      canvas.createPath({path: path}).setFill(fill);
     }
   });
   return MotifSVGDensity;
