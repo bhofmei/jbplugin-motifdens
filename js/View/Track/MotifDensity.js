@@ -194,7 +194,7 @@ define([
         var context = canvas.getContext('2d');
         var canvasHeight = canvas.height;
         if (block.tooManyFeatures && !thisB.config.disable_clip_markers) {
-          context.fillStyle = 'black';
+          context.fillStyle = thisB.config.style.clip_marker_color || 'black';
           context.fillRect(0, canvasHeight - 1, canvas.width, 1);
           context.fillRect(0, 0, canvas.width, 1);
         }
