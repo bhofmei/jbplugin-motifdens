@@ -54,8 +54,10 @@ define([
         this.singleColor = this.colorType === 'single' ? this.colors : 'red';
         this.randomColors = ColorHandler.generateNColors(this.motifs.length);
         var thisB = this;
-        this.indivColors = array.map(this.motifs, function (m) {
-          if (thisB.colorType === 'individual' && thisB.colors.hasOwnProperty(m))
+        this.indivColors = array.map(this.motifs, function (m, i) {
+          if(thisB.colorType === 'random')
+            return thisB.randomColors[i]
+          else if (thisB.colorType === 'individual' && thisB.colors.hasOwnProperty(m))
             return thisB.colors[m];
           else
             return ColorHandler.motifToColorFromList(m, thisB.motifs, thisB.colors, false);

@@ -2,6 +2,7 @@
 Note: Version numbering will begin with v2 to avoid confusion with version numbering from Nucleotide Density plugin
 
 ### [Unreleased]
+- FIXED issue where dialog callback would fail when changing from 'random' colors to 'indiv' colors
 
 ### [v2.2.2] - 2018-03-30
 - FIXED issue where svg density rects would be deleted if y-scale for another track was rendered after the motif density track
